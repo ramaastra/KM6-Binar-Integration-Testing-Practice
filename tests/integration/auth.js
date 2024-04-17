@@ -1,10 +1,7 @@
 const app = require('../../app');
 const request = require('supertest');
-const { PrismaClient } = require('@prisma/client');
-const { createUser } = require('../../services/users');
-const prisma = new PrismaClient();
 
-describe('test POST /api/v1/auth/login endpoint', () => {
+module.exports = () => {
   const validUser = {
     name: 'John Doe',
     email: 'john@gmail.com',
@@ -16,11 +13,6 @@ describe('test POST /api/v1/auth/login endpoint', () => {
     email: 'user@gmail.com',
     password: 'password'
   };
-
-  beforeAll(async () => {
-    await prisma.user.deleteMany();
-    await createUser(validUser.name, validUser.email, validUser.password);
-  });
 
   test('test email belum terdaftar -> error', async () => {
     try {
@@ -68,4 +60,4 @@ describe('test POST /api/v1/auth/login endpoint', () => {
       expect(err).toBe(err);
     }
   });
-});
+};

@@ -3,7 +3,7 @@ const request = require('supertest');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-describe('test POST /api/v1/users endpoint', () => {
+module.exports = () => {
   const name = 'John Doe';
   const email = 'john@gmail.com';
   const password = '123456';
@@ -45,4 +45,4 @@ describe('test POST /api/v1/users endpoint', () => {
       expect(err).toBe('email sudah dipakai');
     }
   });
-});
+};
